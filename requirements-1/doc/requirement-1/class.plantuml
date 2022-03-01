@@ -1,0 +1,33 @@
+@startuml Fave Assement [requirement 1]
+title Fave Assement [requirement 1] Class Diagramme
+
+class Fave
+class XYZCompany
+class Employee
+class Util
+class Tax
+
+Fave "(1) " - XYZCompany : Call on initial state, parse [arg1...arg2...] >
+XYZCompany : generate_monthly_payslip()
+
+Fave : run()
+
+Employee : name
+Employee : gross
+Employee : tax
+Employee : net
+
+Util : roundOff(input)
+Util : removeSpecialChar(input)
+Util : salaryFormater(input)
+
+Tax : getNetSalary(tax)
+Tax : isTaxable()
+Tax : getTaxableRate()
+
+XYZCompany "(2) " - Employee : < Assign value to User Model
+XYZCompany "(3) " - Util : < Call util
+
+Tax "(4) " - XYZCompany :  Get formatted Value >
+
+@enduml

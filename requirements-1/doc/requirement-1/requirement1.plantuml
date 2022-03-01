@@ -1,0 +1,32 @@
+@startuml Fave Assement [requirement 1]
+title Fave Assement [requirement 1]
+!theme plain 
+
+group when application started
+User -[#black]> CLI: User enter query => `generate_monthly_payslip "Ren" 60000`
+CLI -[#black]-> Code: Attempt Generating result from User arguement
+    group user scenario
+        group when Employee's name is not specified
+            Code -[#RED]> User: Raise Exception "Employee Name is Required"
+        end
+        group when Employee's annual salary is not specified
+            Code -[#RED]> User: Raise Exception "Employee annual salary is Required"
+        end
+    end
+
+    group background
+        Code -[#blue]-> Code: The code initiate call `app.rb` from \n`generate_monthly_payslip.rb arg1 arg2` \nand render `/model` on init of the application
+        Code -[#blue]-> Code: The `/util` are called on execution of the `app.rb`
+
+        group when code failed
+            Code -[#red]-> CLI: return Exceptions
+        end 
+
+        group when code is working
+            Code -[#green]> CLI: Generated Result and output
+        end 
+    end
+    
+CLI -[#black]> User: Result output to User
+end
+@enduml 
